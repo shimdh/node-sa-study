@@ -111,7 +111,8 @@ var flight = {
 
 # 값 가져오기
 
-##### `[`와 `]`사이에 문자열 표현식을 사용한다.
+##### `[`와 `]`사이에
+##### 문자열 표현식을 사용한다.
 
 ---
 
@@ -175,3 +176,146 @@ flight.equipment && flight.equipment.model // undefined
 ```
 
 ---
+
+# 변경
+
+##### 오브젝트에 있는 값은 할당해서
+##### 변경할 수 있다.
+
+---
+
+# 변경
+
+##### 변경하려는 프로퍼티에
+##### 이름이 이미 있다면,
+##### 프로퍼티 값은 변경된다.
+
+---
+
+# 예제
+
+```js
+stooge['first-name'] = 'Jerome';
+```
+
+---
+
+# 변경
+
+##### 프로퍼티의 이름을 갖고 있지 않다면,
+##### 오브젝트에 추가된다.
+
+---
+
+# 예제
+
+```js
+stooge['middle-name'] = 'Lester';
+stooge.nickname = 'Curly';
+flight.equipment = {
+	model: 'Boeing 777'
+};
+flight.status = 'overdue';
+```
+
+---
+
+# 참조
+
+##### 오브젝트들은 참조에 의해 전달된다.
+##### 절대 복사되지 않는다.
+
+---
+
+# 예제
+
+```js
+var x = stooge;
+x.nickname = 'Curly';
+var nick = stooge.nickname;
+	// nick is 'Curly' because x and stooge
+	// are references to the same object
+var a = {}, b = {}, c = {};
+	// a, b, and c each refer to a
+	// different empty object
+a = b = c = {};
+	// a, b, and c all refer to
+	// the same empty object
+```
+
+---
+
+# 프로토타입
+
+##### 모든 오브젝트들은
+##### 프로퍼티들을 상속 받을수 있는
+##### 프로토타입 오브젝트에 연결되어있다.
+
+---
+
+# 프로토타입
+
+##### 오브젝트를 만들때
+##### 프로토타입으로
+##### 오브젝트를 선택할수 있다.
+
+---
+
+# `create` 메소드 만들기
+
+##### `Object` 함수에 `create` 메소드를 추가하자
+##### `create` 메소드는 프로토타입으로서
+##### 이전의 오브젝트를 이용하여
+##### 새로운 오브젝트를 만든다.
+
+---
+# 예제
+
+```js
+if (typeof Object.create !== 'function') {
+	Object.create = function (o) {
+		var F = function () {};
+		F.prototype = o;
+		return new F();
+	};
+}
+
+var another_stooge = Object.create(stooge);
+```
+
+---
+
+# 프로토타입
+
+
+##### 프로토타입 링크는
+##### 변경할때 아무런 효과가 없다.
+##### 오브젝트를 변경할때
+##### 오브젝트의 포로토타입은 변경되지 않는다.
+
+---
+
+# 예제
+
+```js
+another_stooge['first-name'] = 'Harry';
+another_stooge['middle-name'] = 'Moses';
+another_stooge.nickname = 'Moe';
+```
+
+---
+# 프로토타입
+
+##### 프로토타입 링크는
+##### 참조할때만 쓰인다.
+
+---
+
+
+
+
+
+
+
+
+
