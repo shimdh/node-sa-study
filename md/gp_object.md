@@ -7,26 +7,38 @@
 
 #### 프로퍼티들의 저장소
 
----
+
+- - -
+
+
 
 # Property?
 
 ##### 이름과 값을 갖는다.
 
----
+
+- - -
+
+
 
 # Property Name?
 
 ##### 이름으로 어떤 문자열도 사용될 수 있다.
 ##### 심지어 빈문자열도 가능하다.
 
----
+
+- - -
+
+
 
 # 프로퍼티의 값?
 
 ##### `undefined`를 제외한 어떤 값이든 사용할수 있다.
 
----
+
+- - -
+
+
 
 # Object?
 
@@ -38,13 +50,14 @@
 
 ##### 다른 오브젝트로부터 프로퍼티들을 상속받을 수 있다.
 
----
+
+- - -
+
+
 
 # 오브젝트 표현
 
 ##### `{` 과 `}`사이에 아무것도 없거나 하나 이상의 이름과 값의 쌍으로 표현한다.
-
----
 
 # Example
 
@@ -59,14 +72,14 @@ var stooge = {
 ```
 
 
----
+
+- - -
+
+
 
 # Property Name
 
-##### 이름이 예약어가 아니거나 유효하다면,
-##### 홑따옴표나 쌍따옴표로 이름을 둘러싸지 않아도 된다.
-
----
+##### 이름이 예약어가 아니거나 유효하다면, 홑따옴표나 쌍따옴표로 이름을 둘러싸지 않아도 된다.
 
 # Example
 
@@ -87,13 +100,16 @@ var flight = {
 };
 ```
 
----
+
+- - -
+
+
 
 # 값 가져오기
 
 ##### `[`와 `]`사이에 문자열 표현식을 사용한다.
 
-##### 유효한 자바스크립트 이름이거나 예약어가 아니면 . 표기법을 사용할 수 있다.
+##### 유효한 자바스크립트 이름이거나 예약어가 아니면 `.`표기법을 사용할 수 있다.
 
 ## Example
 
@@ -102,7 +118,10 @@ stooge["first-name"] // "Joe"
 flight.departure.IATA // "SYD"
 ```
 
----
+
+- - -
+
+
 
 # 값 가져오기
 
@@ -116,7 +135,10 @@ flight.status // undefined
 stooge["FIRST-NAME"] // undefined
 ```
 
----
+
+- - -
+
+
 
 # 값 할당
 
@@ -129,7 +151,10 @@ var middle = stooge["middle-name"] || "(none)";
 var status = flight.status || "unknown";
 ```
 
----
+
+- - -
+
+
 # 값 가져오기
 
 ##### `undefined` 로부터 값을 얻는다면 `TypeError` exception이 생긴다.
@@ -142,15 +167,14 @@ flight.equipment.model // throw "TypeError"
 flight.equipment && flight.equipment.model // undefined
 ```
 
----
+
+- - -
+
+
 
 # Update
 
 ##### 오브젝트에 있는 값은 할당해서 변경할 수 있다.
-
----
-
-# Update
 
 ##### 변경하려는 프로퍼티에 이름이 이미 있다면, 프로퍼티 값은 변경된다.
 
@@ -160,7 +184,10 @@ flight.equipment && flight.equipment.model // undefined
 stooge['first-name'] = 'Jerome';
 ```
 
----
+
+- - -
+
+
 
 # Update
 
@@ -177,7 +204,10 @@ flight.equipment = {
 flight.status = 'overdue';
 ```
 
----
+
+- - -
+
+
 
 # Reference
 
@@ -201,16 +231,21 @@ a = b = c = {};
 	// the same empty object
 ```
 
----
+
+- - -
+
+
 
 # Prototype
 
-##### 모든 오브젝트들은
-##### 프로퍼티들을 상속 받을수 있는 프로토타입 오브젝트에 연결되어있다.
+##### 모든 오브젝트들은 프로퍼티들을 상속 받을수 있는 프로토타입 오브젝트에 연결되어있다.
 
 ##### 오브젝트를 만들때 프로토타입으로 오브젝트를 선택할수 있다.
 
----
+
+- - -
+
+
 
 # `create` Method
 
@@ -233,7 +268,10 @@ if (typeof Object.create !== 'function') {
 var another_stooge = Object.create(stooge);
 ```
 
----
+
+- - -
+
+
 
 # Prototype
 
@@ -248,12 +286,14 @@ another_stooge['middle-name'] = 'Moses';
 another_stooge.nickname = 'Moe';
 ```
 
----
+
+- - -
+
+
 
 # Prototype
 
 ##### 프로토타입 링크는 오직 참조할때만 쓰인다.
-
 
 ##### 오브젝트에 없는 프로퍼티의 이름에 접근하려고 하면 프로토타입에 참조하여 가져오려고 합니다.
 
@@ -261,10 +301,38 @@ another_stooge.nickname = 'Moe';
 ##### 찾으려는 프로퍼티의 이름을 못찾으면 `undefiend`를 반환합니다.
 
 
----
+- - -
 
 
 
+# Prototype
+
+##### 프로토타입의 관계는 동적이다.
+##### 새로운 프로퍼티를 추가하면 그 프로토타입에 기반한 모든 오브젝트에 즉시 나타난다.
+
+## Example
+
+```js
+stooge.profession = 'actor';
+another_stooge.profession // 'actor'
+```
 
 
+- - -
+
+# Property Type
+
+##### `typeof` 연산자를 이용하면 프로퍼티의 타입을 확인하는데 도움이 된다.
+
+## Example
+
+```js
+typeof flight.number // 'number'
+typeof flight.status // 'string'
+typeof flight.arrival // 'object'
+typeof flight.manifest // 'undefined'
+```
+
+
+- - -
 
